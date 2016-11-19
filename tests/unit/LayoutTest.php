@@ -8,7 +8,7 @@ use Mockery\MockInterface;
 use UnitTester;
 use Voonne\Layouts\InvalidStateException;
 use Voonne\Layouts\Layout;
-use Voonne\Panels\PanelManager;
+use Voonne\Panels\Panels\PanelManager;
 use Voonne\Panels\Renderers\RendererManager;
 use Voonne\Voonne\Content\ContentForm;
 

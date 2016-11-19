@@ -12,8 +12,8 @@ namespace Voonne\Layouts;
 
 use Nette\ComponentModel\IComponent;
 use Voonne\Controls\Control;
-use Voonne\Panels\PanelManager;
-use Voonne\Panels\Renderers\PanelRenderer;
+use Voonne\Panels\Panels\PanelManager;
+use Voonne\Panels\Renderers\Renderer;
 use Voonne\Panels\Renderers\RendererManager;
 use Voonne\Voonne\Content\ContentForm;
 
@@ -96,7 +96,7 @@ abstract class Layout extends Control
 	 */
 	public function addComponent(IComponent $component, $name, $insertBefore = null)
 	{
-		if ($component instanceof PanelRenderer) {
+		if ($component instanceof Renderer) {
 			// INJECT
 			$component->injectPrimary($this->getContentForm());
 		}
