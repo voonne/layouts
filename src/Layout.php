@@ -98,7 +98,7 @@ abstract class Layout extends Control
 	{
 		if ($component instanceof Renderer) {
 			// INJECT
-			$component->injectPrimary($this->getContentForm());
+			$component->injectPrimary($this->getContentForm()->getComponent($name));
 		}
 
 		parent::addComponent($component, $name, $insertBefore);

@@ -19,6 +19,7 @@
 		"nette/di": "~2.4",
 		"nette/utils": "~2.4",
 		"voonne/controls": "@dev",
+		"voonne/forms": "@dev",
 		"voonne/panels": "@dev",
 		"voonne/voonne": "@dev"
 	},
