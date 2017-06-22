@@ -31,6 +31,8 @@ class Layout1 extends Layout
 		foreach($this->panelsCenter as $name => $panel) {
 			$rendererFactory = $this->getRendererManager()->getRendererFactory($panel);
 
+			$panel->injectPrimary($this->getUser());
+
 			$this->addComponent($rendererFactory->create($panel), $name);
 		}
 	}

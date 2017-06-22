@@ -15,6 +15,7 @@ use Voonne\Controls\Control;
 use Voonne\Panels\Panels\PanelManager;
 use Voonne\Panels\Renderers\Renderer;
 use Voonne\Panels\Renderers\RendererManager;
+use Voonne\Security\User;
 use Voonne\Voonne\Content\ContentForm;
 
 
@@ -41,6 +42,11 @@ abstract class Layout extends Control
 	 * @var ContentForm
 	 */
 	private $contentForm;
+
+	/**
+	 * @var User
+	 */
+	private $user;
 
 
 	/**
@@ -71,11 +77,21 @@ abstract class Layout extends Control
 
 
 	/**
+	 * @return User
+	 */
+	public function getUser()
+	{
+		return $this->user;
+	}
+
+
+	/**
 	 * @param RendererManager $rendererManager
 	 * @param PanelManager $panelManager
 	 * @param ContentForm $contentForm
+	 * @param User $user
 	 */
-	public function injectPrimary(RendererManager $rendererManager, PanelManager $panelManager, ContentForm $contentForm)
+	public function injectPrimary(RendererManager $rendererManager, PanelManager $panelManager, ContentForm $contentForm, User $user)
 	{
 		if($this->rendererManager !== null) {
 			throw new InvalidStateException('Method ' . __METHOD__ . ' is intended for initialization and should not be called more than once.');
@@ -84,6 +100,7 @@ abstract class Layout extends Control
 		$this->rendererManager = $rendererManager;
 		$this->panelManager = $panelManager;
 		$this->contentForm = $contentForm;
+		$this->user = $user;
 	}
 
 

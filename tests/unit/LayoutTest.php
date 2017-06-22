@@ -10,6 +10,7 @@ use Voonne\Layouts\InvalidStateException;
 use Voonne\Layouts\Layout;
 use Voonne\Panels\Panels\PanelManager;
 use Voonne\Panels\Renderers\RendererManager;
+use Voonne\Security\User;
 use Voonne\Voonne\Content\ContentForm;
 
 
@@ -37,6 +38,11 @@ class LayoutTest extends Unit
 	private $contentForm;
 
 	/**
+	 * @var MockInterface
+	 */
+	private $user;
+
+	/**
 	 * @var Layout
 	 */
 	private $layout;
@@ -47,9 +53,10 @@ class LayoutTest extends Unit
 		$this->rendererManager = Mockery::mock(RendererManager::class);
 		$this->panelManager = Mockery::mock(PanelManager::class);
 		$this->contentForm = Mockery::mock(ContentForm::class);
+		$this->user = Mockery::mock(User::class);
 
 		$this->layout = new TestLayout();
-		$this->layout->injectPrimary($this->rendererManager, $this->panelManager, $this->contentForm);
+		$this->layout->injectPrimary($this->rendererManager, $this->panelManager, $this->contentForm, $this->user);
 	}
 
 
@@ -62,10 +69,12 @@ class LayoutTest extends Unit
 	public function testInitialize()
 	{
 		$this->assertEquals($this->rendererManager, $this->layout->getRendererManager());
+		$this->assertEquals($this->panelManager, $this->layout->getPanelManager());
 		$this->assertEquals($this->contentForm, $this->layout->getContentForm());
+		$this->assertEquals($this->user, $this->layout->getUser());
 
 		$this->expectException(InvalidStateException::class);
-		$this->layout->injectPrimary($this->rendererManager, $this->panelManager, $this->contentForm);
+		$this->layout->injectPrimary($this->rendererManager, $this->panelManager, $this->contentForm, $this->user);
 	}
 
 }

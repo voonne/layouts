@@ -36,6 +36,8 @@ class Layout21 extends Layout
 		foreach($this->panelsLeft as $name => $panel) {
 			$rendererFactory = $this->getRendererManager()->getRendererFactory($panel);
 
+			$panel->injectPrimary($this->getUser());
+
 			$this->addComponent($rendererFactory->create($panel), $name);
 		}
 
@@ -43,6 +45,8 @@ class Layout21 extends Layout
 
 		foreach($this->panelsRight as $name => $panel) {
 			$rendererFactory = $this->getRendererManager()->getRendererFactory($panel);
+
+			$panel->injectPrimary($this->getUser());
 
 			$this->addComponent($rendererFactory->create($panel), $name);
 		}
